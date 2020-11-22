@@ -9,23 +9,57 @@
 
 \section*{Introduction}
 
-\begin{question}
-    Clearly define a problem or an idea of your choice, where you would need to leverage the Foursquare location data to solve or execute. Remember that data science problems always target an audience and are meant to help a group of stakeholders solve a problem, so make sure that you explicitly describe your audience and why they would care about your problem.
-\end{question}
-
 The audience for this data science problem will be owners and operators of traveling food trucks. As food truck operators enter a new city and a new market, a persistent question will be: where to park the foodtruck for maximum revenue. We will attempt to use data science and data from Foursquare to allow foodtruck operators to make a data-informed decision about where to park their food truck.
 
 In this project we will determine the optimal Austin neighborhood to park a new food truck in. We will understand each Austin neighborhood's proximity to popular nightlife spots, as well as how saturated the food truck market is in the given neighborhood.
 
 \section*{Data}
 
-\begin{question}
-    Describe the data that you will be using to solve the problem or execute your idea. Remember that you will need to use the Foursquare location data to solve the problem or execute your idea. You can absolutely use other datasets in combination with the Foursquare location data. So make sure that you provide adequate explanation and discussion, with examples, of the data that you will be using, even if it is only Foursquare location data.
-\end{question}
-
 In order to solve this problem we will firstly need data on Austin neighborhoods.As no dataset readily exists for Austin, Texas we'll have to scrape Wikipedia for neighborhood information. \href{https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas}{This Wikipedia page} contains a list of Austin neighborhoods. Clicking a neighborhood shows that most pages have a \emph{Coordinates} section at the top which links to a \href{https://geohack.toolforge.org/geohack.php?pagename=Anderson_Mill,_Austin,_Texas&params=30_27_18_N_97_48_33_W_region:US-TX_type:city(8953)}{geohack page}.
 
 Food trucks perform best in areas with a lot of nighlife spots. So we'll want to measure how many bars and nightlife spots are close to each neighborhood. We'll also want to measure how many foodtrucks are already in certain neighborhoods, to find neighborhoods that are less competitive. All of this data can be obtained through the \href{https://foursquare.com/developers/apps}{Foursquare API}.
+
+Here is an example of using the Foursquare API in Python to retrieve nightlife spots near Austin, Texas. 
+
+\begin{file}[use-foursquare.py]
+\begin{lstlisting}[language=Python]
+#! /usr/bin/python
+import pandas as pd
+import requests
+
+def venues(latitude, longitude, category):
+    """ Returns venues within a 1 km radius of a location """
+    url = 'https://api.foursquare.com/v2/venues/explore?client_id={}' \
+          '&client_secret={}&ll={},{}&v=20201120&categoryId={}' \
+          '&radius=1000&limit=50'.format(client_id, client_secret, \
+                                         latitude, longitude, category)
+    results = requests.get(url).json()
+    if results['meta']['code'] == '429':
+        raise ValueError('Foursquare Quota Exceeded')
+    return pd.json_normalize(results['response']['groups'][0]['items'])
+
+df_nl = venues(30.3076863, -97.8934851, '4d4b7105d754a06376d81259')
+\end{lstlisting}
+\end{file}
+
+And here is the resulting information:
+
+\begin{ctable}{3}
+    \textbf{Venue} & \textbf{Latitude} & \textbf{Longitude} \\ \hline
+    The Common Interest & 30.366192 & -97.729144 \\ \hline
+    Slick Willie's Family Pool & 30.366677 & -97.729049 \\ \hline
+    Water 2 Wine & 30.362011 & -97.742086 \\ \hline
+    Nosh \& Bevvy & 30.365414 & -97.728802 \\ \hline
+    Buddy's & 30.368978 & -97.727205 \\ \hline
+\end{ctable}
+
+%\section*{Methodology}
+
+%\section*{Results}
+
+%\section*{Discussion}
+
+%\section*{Conclusion}
 
 % Math equation/formula
 %\begin{equation}

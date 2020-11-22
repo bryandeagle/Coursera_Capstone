@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.10.2)  21 NOV 2020 17:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.10.2)  21 NOV 2020 19:50
 entering extended mode
 **c:/Users/bdeagle/Documents/Git/coursera_capstone/report/source/report.tex
 (c:/Users/bdeagle/Documents/Git/coursera_capstone/report/source/report.tex
@@ -1274,30 +1274,45 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 5.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
 (Font)              scaled to size 14.4pt on input line 10.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 26.
+(Font)              scaled to size 10.0pt on input line 18.
+ (C:\Users\bdeagle\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 25.
+ (C:\Users\bdeagle\AppData\Roaming\MiKTeX\2.9\tex/latex/bera\t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 8.50006pt on input line 25.
+LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <10> not available
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 26.
+LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
+(Font)              scaled to size 8.50006pt on input line 26.
+LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
+(Font)              scaled to size 8.50006pt on input line 27.
  [1
 
-{C:/Users/bdeagle/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
+{C:/Users/bdeagle/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 79.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 79.
  (c:\Users\bdeagle\Documents\Git\coursera_capstone\report\build\report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 79.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25155 strings out of 481165
- 457297 string characters out of 2912055
- 896949 words of memory out of 3000000
- 40210 multiletter control sequences out of 15000+200000
- 579954 words of font info for 62 fonts, out of 3000000 for 9000
+ 25612 strings out of 481165
+ 460521 string characters out of 2912055
+ 1054295 words of memory out of 3000000
+ 40631 multiletter control sequences out of 15000+200000
+ 590577 words of font info for 81 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,10n,76p,1172b,1071s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}<C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Bold.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Roman.pfb>
-Output written on c:\Users\bdeagle\Documents\Git\coursera_capstone\report\output\report.pdf (1 page, 156156 bytes).
+ 81i,10n,76p,1172b,1501s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}{C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}<C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Bold.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/bera/fvmb8a.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/bera/fvmr8a.pfb><C:/Users/bdeagle/AppData/Roaming/MiKTeX/2.9/fonts/type1/bera/fvmro8a.pfb>
+Output written on c:\Users\bdeagle\Documents\Git\coursera_capstone\report\output\report.pdf (2 pages, 178822 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
- 4 named destinations out of 1000 (max. 500000)
+ 70 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
