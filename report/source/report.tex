@@ -15,7 +15,7 @@ In this project we will determine the optimal Austin neighborhood to park a new 
 
 \section*{Data}
 
-In order to solve this problem we will firstly need data on Austin neighborhoods.As no dataset readily exists for Austin, Texas we'll have to scrape Wikipedia for neighborhood information. \href{https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas}{This Wikipedia page} contains a list of Austin neighborhoods. Clicking a neighborhood shows that most pages have a \emph{Coordinates} section at the top which links to a \href{https://geohack.toolforge.org/geohack.php?pagename=Anderson_Mill,_Austin,_Texas&params=30_27_18_N_97_48_33_W_region:US-TX_type:city(8953)}{geohack page}.
+In order to solve this problem we will firstly need data on Austin neighborhoods. As no data set readily exists for Austin, Texas, we'll have to scrape Wikipedia for neighborhood information. \href{https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas}{This Wikipedia page} contains a list of Austin neighborhoods. Clicking a neighborhood shows that most pages have a \emph{Coordinates} section in the top-right which links to a \href{https://geohack.toolforge.org/geohack.php?pagename=Anderson_Mill,_Austin,_Texas&params=30_27_18_N_97_48_33_W_region:US-TX_type:city(8953)}{geohack page}.
 
 Food trucks perform best in areas with a lot of nighlife spots. So we'll want to measure how many bars and nightlife spots are close to each neighborhood. We'll also want to measure how many foodtrucks are already in certain neighborhoods, to find neighborhoods that are less competitive. All of this data can be obtained through the \href{https://foursquare.com/developers/apps}{Foursquare API}.
 
@@ -70,7 +70,7 @@ Our overall methodology for this project will be to:
 
 \subsection*{Procure a List of Neighborhoods in Austin, Texas}
 
-As stated in the Data section, \href{https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas}{This Wikipedia page} has a list of Austin neighborhoods, each neighborhood having its own Wikipedia page. I found that the number of neighborhoods was low enough, and the pages differed enough, that a semi-manual process for procuring this list was ideal. I've created CSV file of Austin neighborhoods which can be found \href{https://github.com/bryandeagle/Coursera_Capstone/raw/main/austin.csv}{at this link}.
+As stated in the Data section, \href{https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas}{This Wikipedia page} has a list of Austin neighborhoods, each neighborhood having its own Wikipedia page. I found that the number of neighborhoods was low enough, and the pages differed enough, that a semi-manual process for procuring this list was ideal. For example, some of the Wikipedia pages listed coorindates in DD (decimal degrees) and some in DMS (degrees minutes seconds). I've created CSV file of Austin neighborhoods which can be found \href{https://github.com/bryandeagle/Coursera_Capstone/raw/main/data/austin.csv}{at this link}.
 
 \subsection*{Determine the Number of Nightlife Spots}
 
@@ -93,7 +93,7 @@ To accomplish this, we'll create a new index, called the \emph{Foodtruck-to-Nigh
 	FNR = \frac{N_{foodtrucks}}{N_{nightlife}}
 \end{equation}
 
-As you can tell from the formula the number of nightlife spots cannot be zero, or this ratio cannot be calculated. Actually we'll want to avoid neighborhoods with one or two nightlife spots, so we'll create a threshold below which we won't consider the neighborhood. I've set this threshold at \emph{five} nightlife spots for this project.
+As you can tell from the formula, the number of nightlife spots cannot be zero, or this ratio cannot be calculated. Actually we'll want to avoid neighborhoods with too few nightlife spots, so we'll create a threshold below which we won't consider the neighborhood. I've set this threshold at \emph{five} nightlife spots for this project.
 
 \subsection*{Within that Neighborhood, Find the Largest Cluster of Bars}
 
@@ -101,7 +101,7 @@ We'll use the \emph{DBSCAN (Density-based spatial clustering of applications wit
 
 \subsection*{Find the Ideal Parking Spot as the Midpoint of that Cluster}
 
-Once we've identified our cluster of bars to target, we'll average the latitudes and longitudes of those bars, to find the ideal place to park our food truck.
+Once we've identified our cluster of bars to target, we'll average the latitudes and longitudes of those bars, to find the ideal place to park our food truck. Then we'll convert that latitude-longitude-pair into a street address.
 
 \section*{Results}
 
@@ -143,7 +143,7 @@ The bar chart below shows the Foodtruck-to-Nightlife ratio of Austin neighborhoo
 
 We use the \emph{DBSCAN} method to put the nightlife spots into clusters, and filter out the noise. As we can see from the map below, there are several "loner" nightlife spots (shown in black), but a definite cluster of bars off of Burnet Road (shown in pink).
 
-Our ideal parking location is the average of the cluster of bars, and is shown by the green dot on the map. We use geopy to determine the address of that location is \emph{8524, Burnet Road, Wooten, Austin, Travis County, Texas, 78757, United States of America}.
+Our ideal parking location is the average of the cluster of bars, and is shown by the green dot on the map. We use geopy to determine the address of that location is \textbf{8524, Burnet Road, Wooten, Austin, Travis County, Texas, 78757, United States of America}.
 
 \begin{center}
     \includegraphics[scale=0.55]{map}
@@ -151,7 +151,7 @@ Our ideal parking location is the average of the cluster of bars, and is shown b
 
 \section*{Discussion}
 
-TBD
+Overall, it appears the \emph{Foodtruck-to-Bar} ratio is a compelling metric for making a data-informed decision about where to park a new food truck. It also appears the DBSCAN clustering method was successful in finding clusters of nearby bars while rejecting loner bars.
 
 \section*{Conclusion}
 
