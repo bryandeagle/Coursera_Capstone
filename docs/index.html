@@ -23,6 +23,15 @@
       }
       img {
         width: 100%;
+        margin-top: 2em;
+        margin-bottom: 2em;
+      }
+      table.neighborhood {
+        width: 100%;
+      }
+      table.neighborhood td {
+        width: 33%;
+        padding: 0;
       }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -69,34 +78,212 @@
 
         <p>This blog post discusses a highly-debated topic: where to park your new shiny food truck in Austin, Texas. In the tradition of this prestigious publication, we'll be answering that question using <b>the power of data science</b>!</p>
         <hr>
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+        <h2>Overview</h2>
+        <p>With so many hip Austin neighborhoods, and so many delicious food trucks already, we need to know: <i>which Austin neighborhoods are begging for a new food truck?</i></p>
+        <p>Being familiar with the business of food trucks, we know the answer will have to do with: how many nightlife spots a neighborhood has. Because food trucks and bars go together like peanut butter and jelly.</p>
+        <p>We'll also need to know: how many food trucks a neighborhood already has to determine if the market is saturated already. For example south congress has a lot of bars, but it also has a ton of food trucks. Good luck standing out in that neighborhood.</p>
         
+        <h3>Austin Neighborhoods</h3>
+        <p>Without further ado, here is a (hopefully exhaustive) list of the neighborhoods of Austin, Texas. For those interested, this list was sourced from <a target="blank" href="https://en.wikipedia.org/wiki/Category:Neighborhoods_in_Austin,_Texas">this Wikipedia article</a>.</p>
+        <table class="neighborhood">
+          <td>
+            <ul>
+              <li>Neighborhood</li>
+              <li>Allandale</li>
+              <li>Anderson Mill</li>
+              <li>Barton Hills</li>
+              <li>Blackland</li>
+              <li>Bouldin Creek</li>
+              <li>Bremond Block</li>
+              <li>Brentwood</li>
+              <li>"Brown Herman</li>
+              <li>Bryker Woods</li>
+              <li>Camp Mabry</li>
+              <li>Canyon Creek</li>
+              <li>Circle C Ranch</li>
+              <li>Clarksville</li>
+              <li>Congress Avenue</li>
+              <li>Crestview</li>
+              <li>Downtown Austin</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>East Cesar Chavez</li>
+              <li>East Riverside-Oltorf</li>
+              <li>Easton Park</li>
+              <li>Galindo</li>
+              <li>Granada Hills</li>
+              <li>Hancock</li>
+              <li>Hyde Park</li>
+              <li>Montopolis</li>
+              <li>Moore's Crossing</li>
+              <li>Mueller Community</li>
+              <li>North Burnet–Gateway</li>
+              <li>North Shoal Creek</li>
+              <li>Oak Hill</li>
+              <li>Old West Austin</li>
+              <li>Onion Creek</li>
+              <li>Rainey Street</li>
+              <li>Rosedale</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Saint John</li>
+              <li>Scenic Brook</li>
+              <li>South Congress</li>
+              <li>South Lamar</li>
+              <li>South River City</li>
+              <li>Spyglass-Barton's Bluff</li>
+              <li>Swedish Hill</li>
+              <li>Tarrytown</li>
+              <li>Travis Heights</li>
+              <li>West Line</li>
+              <li>Westgate</li>
+              <li>Willow–Spence Streets</li>
+              <li>Windsor Park</li>
+              <li>Wooten</li>
+              <li>Zilker Park</li>
+              <li>Zilker</li>
+            </ul>
+          </td>
+        </table>
+
+        <h3>Scoring the Neighborhoods</h3>
+        <p>Now, for each neighborhood, we'll want to know: how many bars are the in proximity to that neighborhood. We'll also want to know how many food trucks are already parked in that neighborhood. To answer that, we'll use the trusty <a target="blank" href="https://developer.foursquare.com/docs/api-reference/venues/explore/">Foursquare API</a>.</p>
+        <h4>Example Foursquare API call</h4>
+        <pre><code>https://api.foursquare.com/v2/venues/explore?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET&ll=30.3126857,-97.7368525&v=20201120&categoryId=4bf58dd8d48988d1cb941735&radius=1000&limit=50</code></pre>
+        <p>Neighborhoods with less than five bars are no place to park a food truck, so we'll remove those from our data set.</p>
+        <p>Now armed with information on each neighborhood's proximity to food trucks and bars, we'll calcualt a <i>Foodtruck-to-Nightlife Ratio</i>.</p>
+
+        <p>The bar chart below shows each neighborhood with five or more bars, and their respective Foodtruck-to-Nightlife ratios. As you can see, <b>North Shoal Creek</b> is looking in need of a new food truck.</p>
+
         <img src="img/bar.png">
         
-        <h2>Heading</h2>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        <pre><code>Example code block</code></pre>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <ul>
-          <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-          <li>Donec id elit non mi porta gravida at eget metus.</li>
-          <li>Nulla vitae elit libero, a pharetra augue.</li>
-        </ul>
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-        <ol>
-          <li>Vestibulum id ligula porta felis euismod semper.</li>
-          <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-          <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-        </ol>
-        <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+        <h3>Neighborhoods and Their FNR</h3>
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Neighborhood</th>
+              <th scope="col">Nightlife</th>
+              <th scope="col">Food Truck</th>
+              <th scope="col">FNR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">North Shoal Creek</th>
+              <td>8</td>
+              <td>3</td>
+              <td>0.375000</td>
+            </tr>
+            <tr>
+              <th scope="row">Clarksville</th>
+              <td>5</td>
+              <td>2</td>
+              <td>0.400000</td>
+            </tr>
+            <tr>
+              <th scope="row">Saint John</th>
+              <td>6</td>
+              <td>3</td>
+              <td>0.500000</td>
+            </tr>
+            <tr>
+              <th scope="row">Bremond Block</th>
+              <td>158</td>
+              <td>117</td>
+              <td>0.740506</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Downtown Austin</th>
+              <td>169</td>
+              <td>130</td>
+              <td>0.769231</td>
+            </tr>
+            <tr>
+              <th scope="row">Mueller Community </th>
+              <td>7</td>
+              <td>6</td>
+              <td>0.857143</td>
+            </tr>
+            <tr>
+              <th scope="row">Congress Avenue</th>
+              <td>182</td>
+              <td>163</td>
+              <td>0.895604</td>
+            </tr>
+            <tr>
+              <th scope="row">Zilker</th>
+              <td>15</td>
+              <td>16</td>
+              <td>1.066667</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Travis Heights</th>
+              <td>5</td>
+              <td>7</td>
+              <td>1.400000</td>
+            </tr>
+            <tr>
+              <th scope="row">Rainey Street</th>
+              <td>120</td>
+              <td>177</td>
+              <td>1.475000</td>
+            </tr>
+            <tr>
+              <th scope="row">North Burnet–Gateway</th>
+              <td>9</td>
+              <td>14</td>
+              <td>1.555556</td>
+            </tr>
+            <tr>
+              <th scope="row">Blackland</th>
+              <td>6</td>
+              <td>11</td>
+              <td>1.833333</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Willow–Spence Streets</th>
+              <td>82</td>
+              <td>174</td>
+              <td>2.121951</td>
+            </tr>
+            <tr>
+              <th scope="row">Swedish Hill</th>
+              <td>14</td>
+              <td>38</td>
+              <td>2.714286</td>
+            </tr>
+            <tr>
+              <th scope="row">Bouldin Creek</th>
+              <td>10</td>
+              <td>60</td>
+              <td>6.000000</td>
+            </tr>
+            <tr>
+              <th scope="row">South Congress</th>
+              <td>9</td>
+              <td>54</td>
+              <td>6.000000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>There you have it folks. The best neighborhood to park a new food truck in is <b>North Shoal Creek!</b></p>
+        <h2>Where in that Neighborhood Should I Park?</h2>
+        <p>Another great question. We'll use the Foursquare API to pull a list of bars in North Shoal Creek, and try to segment them into clusters of similarly-located bars. The method we'll use will be <a target="blank" href="https://en.wikipedia.org/wiki/DBSCAN">DBSCAN</a>. Clustering all the bars in North Shoal Creek gives us the following map.</p>
+
+        <img src="img/map.png">
+
+        <p>You can see from the map there is a nice cluster of bars off of Burnet Road that look in need of a new hip food truck. We'll set our parking location right in the middle of all of those bars, averging the coordinates of bars in the large cluster. We can use the <code>geopy</code> library to convert that coordinate into an address and we get: <b>8524, Burnet Road, Austin, Texas, 78757</b>.</p>
+
+        <h3>Conclusion</h3>
+        There you have it folks. If you're bringing a new food truck into Austin, Texas, you'll want to park it right at 8524, Burnet Road, Austin, Texas, 78757.
+
       </div><!-- /.blog-post -->
 
       <nav class="blog-pagination">
